@@ -44,9 +44,9 @@ And now whenever a value is added to the pool, the appropriate amount of noise w
 
 ---
 
-###Step 4: Create and Manage Anti-Cheat Values
+### Step 4: Create and Manage Anti-Cheat Values
 
-# The plugin provides specialized classes for different data types. Use these classes to create anti-cheat-protected variables:
+The plugin provides specialized classes for different data types. Use these classes to create anti-cheat-protected variables:
 
 ac_int: For integers.
 
@@ -75,29 +75,25 @@ print(value)  # Outputs: 42
 
 ---
 
-###Step 5: Accessing and Modifying Values
+### Step 5: Accessing and Modifying Values
 
-# Access and modify values using the set_value and get_value methods:
+Access and modify values using the set_value and get_value methods:
 
 ```gdscript
-#Set a Value:
+# Set a Value:
 
 my_anticheat_pool.set_value("key_name", ac_value_instance)
 
-#Get a Value:
+# Get a Value:
 
 var value = my_anticheat_pool.get_value("key_name").value()
-
-#Parse a list (ac_list)
-
-var value = my_anticheat_pool.get_value("my_list").parse()
 ```
 
 ---
 
-###Additional Feature: Assimilate
+### Additional Feature: Assimilate
 
-#Easily merge your dictionaries into the pool with the assimilate method:
+Easily merge your dictionaries into the pool with the assimilate method:
 ```gdscript
 var dictionary = {"example1": "value1", "example2": 123, "example4": true}
 
@@ -111,19 +107,153 @@ print(example1)
 ```
 ---
 
-##Performance Considerations
+## ac_list Documentation
+
+### set_value(key, value)
+
+Sets a value at the specified key in the Dictionary or at the specified index in the Array.
+
+Updates the serialized internal state and notifies the parent of changes.
+
+
+
+### get_value(key, default_value)
+
+Retrieves the value at the specified key (for Dictionary) or index (for Array).
+
+If the key or index is not found, returns the default_value.
+
+
+
+### append(value)
+
+Adds a new value to the end of the Array.
+
+Throws an error if the internal structure is not an Array.
+
+
+
+### parse()
+
+Returns the deserialized form of the internal data (either an Array or Dictionary).
+
+
+
+### remove_at(index)
+
+Removes the element at the specified index in the Array.
+
+Throws an error if the internal structure is not an Array.
+
+
+
+### erase(value)
+
+Removes the first occurrence of the specified value in the Array or Dictionary.
+
+If it's a Dictionary, it deletes the entry with the matching key.
+
+Throws an error if the internal structure is unsupported.
+
+
+
+### duplicate()
+
+Returns a new ac_list instance with a copy of the current data.
+
+
+
+### merge(value)
+
+Merges the provided Dictionary into the current Dictionary.
+
+Throws an error if the internal structure is not a Dictionary.
+
+
+
+### has(value)
+
+Checks if the specified key (for Dictionary) or value (for Array) exists.
+
+
+
+### keys()
+
+Returns all keys in the Dictionary.
+
+Throws an error if the internal structure is an Array.
+
+
+
+### sort_custom(value)
+
+Sorts the Array using a custom comparator function.
+
+Throws an error if the internal structure is not an Array.
+
+
+
+### any(value)
+
+Checks if any element in the Array satisfies the given callable condition.
+
+Throws an error if the internal structure is a Dictionary.
+
+
+
+### is_empty()
+
+Returns true if the internal Array or Dictionary is empty.
+
+
+
+### size()
+
+Returns the number of elements in the Array or entries in the Dictionary.
+
+
+---
+
+### Value Access
+
+Values in an ac_list can be accessed using multiple methods:
+
+By Method: get_value("key")
+
+By Subscript: ["key"]
+
+By Property Access: .key
+
+
+These can be nested to mimic the structure of Array or Dictionary, allowing deep access into the data. For example:
+
+```gdscript
+var value = ac_list["key"]["nested_key"]
+```
+
+---
+
+This class provides a secure and structured way to manage nested data while integrating with the anti-cheat system.
+
+---
+
+## Performance Considerations
 
 Using the Anti-Cheat Value Plugin introduces a small performance overhead due to its validation processes. Use it only for sensitive data to balance security and performance.
 
 
 ---
 
-##Additional Notes
+## Additional Notes
 
 The plugin supports both dictionaries and arrays as nested structures, stored and accessed through ac_list.
 
 The acGlobalPool serves as a shared resource; initialize and use it consistently across your project.
 
 The anti-cheat variables are accessed in the form of key-value pairs, so please ensure the uniqueness of the keys to avoid mistakenly overwriting the correct data.
+
+Any JSON strings contained within an array or dictionary will be automatically parsed when retrieved from an ac_list.
+
+NodePaths retrieved from an ac_list will be returned as they are instead of being wrapped in an ac_value.
 
 [![Watch the video](screenshot/screenshot1.png)](https://youtu.be/lVJk9zAZP1w)
