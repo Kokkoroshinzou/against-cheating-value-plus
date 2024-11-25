@@ -1,4 +1,4 @@
-#Anti-Cheat Value Plus Plugin
+# Anti-Cheat Value Plus Plugin
 
 The **Anti-Cheat Value Plus Plugin** is designed to protect sensitive in-game data from being modified by cheat tools. It uses obfuscation techniques and runtime validation to secure data integrity.
 
@@ -46,7 +46,7 @@ And now whenever a value is added to the pool, the appropriate amount of noise w
 
 ###Step 4: Create and Manage Anti-Cheat Values
 
-The plugin provides specialized classes for different data types. Use these classes to create anti-cheat-protected variables:
+# The plugin provides specialized classes for different data types. Use these classes to create anti-cheat-protected variables:
 
 ac_int: For integers.
 
@@ -77,7 +77,7 @@ print(value)  # Outputs: 42
 
 ###Step 5: Accessing and Modifying Values
 
-#Access and modify values using the set_value and get_value methods:
+# Access and modify values using the set_value and get_value methods:
 
 ```gdscript
 #Set a Value:
@@ -108,7 +108,7 @@ var example1 = my_anticheat_pool.get_value("example1").value()
 
 # Prints "value1"
 print(example1)
-
+```
 ---
 
 ##Performance Considerations
