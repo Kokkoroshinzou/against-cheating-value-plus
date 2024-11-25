@@ -12,8 +12,6 @@ func _init(v: int = 0, parent: ac_list = null, parent_key: Variant = null) -> vo
 	
 func value() -> int:
 	if not _validator.check(_value):
-		SystemMessage.create_message("Warning", "Cheating detected. Your account has been reported for violating the terms of service.")
-		await SignalBus.close_message
 		return _validator.source()
 	return _value
 
